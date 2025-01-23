@@ -52,7 +52,8 @@ section {
 
 img {
     display: block;
-    max-width: 100%;
+    width: 100%;
+    max-width: 400px;
 }
 
 strong { font-weight: var(--fw-bold) }
@@ -280,8 +281,6 @@ header {
     }
 }
 
-
-
 /*  My services section  */
 
 .my-services {
@@ -330,7 +329,6 @@ header {
     }
 }
 
-
 .about-me {
     max-width: 1000px;
     margin: 0 auto;
@@ -377,12 +375,21 @@ header {
 .my-work {
     background-color: var(--clr-dark);
     color: var(--clr-light);
-    text-align: center;    
+    text-align: center;
 }
 
 .portfolio {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    text-decoration: none;
+}
+
+@media (min-width: 800px) {
+    .portfolio {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(300px, 1fr));
+        text-decoration: none;
+    }
 }
 
 .portfolio_item {
@@ -402,11 +409,46 @@ header {
 }
 
 .portfolio_img:hover,
-.portfolio_item:focus .portfolio_img {
+.portfolio_item:focus .portfolio_img .overlay .text {
     transform: scale(1.2);
-    opacity: .5;
+    opacity: 0.1;
 }
 
+/* Overlay Text */
+
+/* Portfolio overlay */
+.portfolio_item {
+    position: relative;
+    display: inline-block;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--clr-accent); /* Semi-transparent background */
+    color: var(--clr-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 250ms ease-in-out;
+    pointer-events: none; /* Prevent interference with clicks */
+}
+
+.portfolio_item:hover .overlay {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.text {
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+    padding: 0 10px;
+}
 
 /* footer */
 
